@@ -1,17 +1,20 @@
 # Fta.AzureFunctions.UnitAndIntegrationTesting
 Unit and integration tests examples for Azure Functions
 
-This repo is a sample .NET 6 Notes API written using Azure Functions template and contains examples on how to properly write unit and integration tests for the Functions classes.
+This repo is a sample .NET 6 "Create Notes" API written using Azure Functions template and contains examples on how to properly write unit and integration tests for the Azure Functions classes.
 
 # Prerequisites
 The code in this repo requires knowledge of the following concepts and frameworks:
 
 - Unit testing
 - Integration testing
-- xUnit => Testing framework
-- NSubstitute => Mocking framework
+- xUnit (https://github.com/xunit/xunit)
+  - Testing framework
+- NSubstitute (https://nsubstitute.github.io/)
+  - Mocking framework
+- FluentAssertions (https://fluentassertions.com/)
 
-The API uses Azure Cosmos DB for its storing purposes and to run it locally you must run your intergation test against local instance of Azure CosmosDB. 
+The API uses Azure Cosmos DB to store the created Notes and to run it locally you must run your API against a local instance of Azure CosmosDB. 
 
 It’s availalble for download here: https://aka.ms/cosmosdb-emulator
 
