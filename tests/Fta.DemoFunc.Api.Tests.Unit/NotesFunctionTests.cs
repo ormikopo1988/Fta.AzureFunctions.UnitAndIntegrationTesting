@@ -56,7 +56,7 @@ namespace Fta.DemoFunc.Api.Tests.Unit
             });
 
             // Assert
-            _logger.Received(1).LogInformation("C# HTTP trigger function processed a request.");
+            _logger.Received(1).LogInformation("C# HTTP trigger NotesFunction processed a request.");
             var result = response.Result as CreatedResult;
             result!.StatusCode.Should().Be(StatusCodes.Status201Created);
             result!.Value.Should().BeEquivalentTo(expectedResult);
@@ -76,10 +76,10 @@ namespace Fta.DemoFunc.Api.Tests.Unit
             });
 
             // Assert
-            _logger.Received(1).LogInformation("C# HTTP trigger function processed a request.");
+            _logger.Received(1).LogInformation("C# HTTP trigger NotesFunction processed a request.");
             var result = response.Result as BadRequestObjectResult;
             result!.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
-            result!.Value.Should().BeEquivalentTo("This HTTP triggered function executed successfully, but you passed in a bad request model for the note creation process.");
+            result!.Value.Should().BeEquivalentTo("This HTTP triggered NotesFunction executed successfully, but you passed in a bad request model for the note creation process.");
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Fta.DemoFunc.Api.Tests.Unit
             });
 
             // Assert
-            _logger.Received(1).LogInformation("C# HTTP trigger function processed a request.");
+            _logger.Received(1).LogInformation("C# HTTP trigger NotesFunction processed a request.");
             _logger.Received(1).LogError(Arg.Any<Exception>(), $"Exception in {nameof(NotesFunction)} -> {typeof(NotesFunction)!.GetMethod("Post")!.Name} method.");
             var result = response.Result as InternalServerErrorResult;
             result!.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
