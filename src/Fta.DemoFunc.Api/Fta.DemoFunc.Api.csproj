@@ -1,11 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="C:\Users\ormeikop\.nuget\packages\microsoft.azure.cosmos\3.31.2\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.31.2" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
