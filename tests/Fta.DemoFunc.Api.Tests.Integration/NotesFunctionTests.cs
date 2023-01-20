@@ -13,7 +13,7 @@ namespace Fta.DemoFunc.Api.Tests.Integration
     [Collection(IntegrationTestsCollection.Name)]
     public class NotesFunctionTests : IClassFixture<TestStartup>, IAsyncLifetime
     {
-        private readonly NotesFunction _sut;
+        private readonly NotesFunction? _sut;
         private readonly TestsInitializer _testsInitializer;
         private readonly CosmosClient _cosmosClient;
         private Container? _container;
@@ -24,7 +24,7 @@ namespace Fta.DemoFunc.Api.Tests.Integration
             _testsInitializer = testsInitializer;
 
             var cosmosDbSettings = testsInitializer.ServiceProvider.GetService<CosmosDbSettings>();
-            _cosmosClient = new CosmosClient(cosmosDbSettings.ConnectionString);
+            _cosmosClient = new CosmosClient(cosmosDbSettings!.ConnectionString);
             _sut = _testsInitializer.ServiceProvider.GetService<NotesFunction>();
         }
 
@@ -48,7 +48,7 @@ namespace Fta.DemoFunc.Api.Tests.Integration
             };
 
             // Act
-            var response = await _sut.Post(createValidNoteRequest);
+            var response = await _sut!.Post(createValidNoteRequest);
             var createdResult = (CreatedResult)response.Result;
             var createNoteResponse = createdResult.Value as CreateNoteResponse;
             _noteId = createNoteResponse!.Id;
@@ -66,7 +66,7 @@ namespace Fta.DemoFunc.Api.Tests.Integration
             var createInvalidNoteRequest = new CreateNoteRequest();
 
             // Act
-            var response = await _sut.Post(createInvalidNoteRequest);
+            var response = await _sut!.Post(createInvalidNoteRequest);
             var badRequestObjectResult = (BadRequestObjectResult)response.Result;
 
             // Assert

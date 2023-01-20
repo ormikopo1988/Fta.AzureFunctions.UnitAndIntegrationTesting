@@ -12,12 +12,18 @@ namespace Fta.DemoFunc.Api.Services
     {
         private readonly INoteRepository _noteRepository;
         private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly INotificationService _notificationService;
         private readonly ILoggerAdapter<NoteService> _logger;
 
-        public NoteService(INoteRepository noteRepository, IDateTimeProvider dateTimeProvider, ILoggerAdapter<NoteService> logger)
+        public NoteService(
+            INoteRepository noteRepository, 
+            IDateTimeProvider dateTimeProvider,
+            INotificationService notificationService,
+            ILoggerAdapter<NoteService> logger)
         {
             _noteRepository = noteRepository;
             _dateTimeProvider = dateTimeProvider;
+            _notificationService = notificationService;
             _logger = logger;
         }
 
@@ -38,6 +44,8 @@ namespace Fta.DemoFunc.Api.Services
                 CreatedAt = _dateTimeProvider.UtcNow,
                 LastUpdatedOn = _dateTimeProvider.UtcNow
             }, ct);
+
+            await _notificationService.SendNoteCreatedEventAsync(createNoteOptions, ct);
 
             return new NoteDto
             {
